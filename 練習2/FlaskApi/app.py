@@ -1,19 +1,20 @@
 from flask import Flask
 from flask import render_template
 from flask_bootstrap import Bootstrap
-
+from flask_sqlalchemy import SQLAlchemy
+from config import Config
 import os
 
-#  目標: Flask Boostrap 插件的用法
-#  https://pythonhosted.org/Flask-Bootstrap/basic-usage.html
-#  https://getbootstrap.com/docs/3.3/components/
-#  安裝 flask_bootstrap 及 import
-#  bootstrap/base.html 原生地base.html 在
-#  .\FlaskApi\venv\Lib\site-packages\flask_bootstrap\templates\bootstrap
+#  目標: Flask SQLAlchemy 的用法
+#  https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/
+#  安裝 flask-sqlalchemy
+
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 
+db = SQLAlchemy(app)
+app.config.from_object(Config)
 @app.route('/')
 def index():
     # 傳參數給 template
