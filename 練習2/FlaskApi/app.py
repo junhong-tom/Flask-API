@@ -1,14 +1,18 @@
 from flask import Flask
 from flask import render_template
+from flask_bootstrap import Bootstrap
+
 import os
 
-# 目標: 模板的繼承
-# 1.  基礎模板  base.html
-# 2.  extends 的使用
-# 3.  模板的引用 nabvar.html
-# 4.  include 的使用
+#  目標: Flask Boostrap 插件的用法
+#  https://pythonhosted.org/Flask-Bootstrap/basic-usage.html
+#  https://getbootstrap.com/docs/3.3/components/
+#  安裝 flask_bootstrap 及 import
+#  bootstrap/base.html 原生地base.html 在
+#  .\FlaskApi\venv\Lib\site-packages\flask_bootstrap\templates\bootstrap
 
 app = Flask(__name__)
+bootstrap = Bootstrap(app)
 
 @app.route('/')
 def index():
