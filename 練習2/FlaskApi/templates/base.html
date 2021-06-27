@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- templates 流程控管
+    {% if 變數名稱 %}
+    {% else %}
+    {% endif %}
+    -->
+    {% if title %}
+        <title> {{title}} </title>
+    {% else %}
+        <title> Flask APP </title>
+    {% endif %}
+
+
+</head>
+<body>
+    <!--  抽取到 navbar.html
+    <h3><a href="/">Flask App</a></h3>
+    <hr>
+    -->
+    {% include 'navbar.html' %}
+
+    <!--父模板 定義子模板可自行修改的地方-->
+    {% block content %}
+    <h1> Parent templates</h1>
+    {% endblock %}
+
+</body>
+</html>

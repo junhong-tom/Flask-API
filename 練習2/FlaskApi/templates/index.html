@@ -1,32 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- templates 流程控管
-    {% if 變數名稱 %}
-    {% else %}
-    {% endif %}
-    -->
-    {% if title %}
-        <title> {{title}} </title>
-    {% else %}
-        <title> Flask APP </title>
-    {% endif %}
+{% extends 'base.html' %}
 
-
-</head>
-<body>
-    <h1> use template</h1>
-    <!-- 接收 title  參數 -->
+<!-- 子模板 可自行編寫寫區,並覆寫父模板的內容-->
+{% block content %}
     <p> {{title}} </p>
-     <!-- templates loop 控管
-    {% for item in data %}
-    ... {{item}}  ...
-    {% endfor %}
-    -->
-    {% for item in data %}
-    <p>{{ item }}</p>
-    {% endfor %}
-
-</body>
-</html>
+{% endblock %}

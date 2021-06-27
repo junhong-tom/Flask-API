@@ -1,26 +1,17 @@
 from flask import Flask
-
-# use render_template
-# Check template file
 from flask import render_template
 import os
+
+# 目標: 模板的繼承
+# 1.  基礎模板  base.html
+# 2.  extends 的使用
+# 3.  模板的引用 nabvar.html
+# 4.  include 的使用
+
 app = Flask(__name__)
-
-
 
 @app.route('/')
 def index():
-    return "hello,flask"
-
-
-# return html 語言
-@app.route('/html')
-def hmtlindex():
-    return "<h1>hello,flask</h1>"
-
-# 抽取 HTML
-@app.route('/render_template')
-def index_template():
     # 傳參數給 template
     #title = 'Flask Web App'
     paragraphs =[
