@@ -2,12 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> {{title}} </title>
+    <!-- templates 流程控管
+    {% if 變數名稱 %}
+    {% else %}
+    {% endif %}
+    -->
+    {% if title %}
+        <title> {{title}} </title>
+    {% else %}
+        <title> Flask APP </title>
+    {% endif %}
+
+
 </head>
 <body>
     <h1> use template</h1>
     <!-- 接收 title  參數 -->
     <p> {{title}} </p>
+     <!-- templates loop 控管
+    {% for item in data %}
+    ... {{item}}  ...
+    {% endfor %}
+    -->
+    {% for item in data %}
+    <p>{{ item }}</p>
+    {% endfor %}
 
 </body>
 </html>
