@@ -3,3 +3,4 @@ flask-bootstrap
 flask-sqlalchemy
 flask-wtf
 email_validator
+flask-bcrypt
