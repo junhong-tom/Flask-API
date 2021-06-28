@@ -3,6 +3,7 @@ from flask import render_template
 from app.forms import RegisterForm
 from app import db,bcrypt,app
 from app.models import User
+from flask import redirect, url_for
 
 @app.route('/')
 def index():
@@ -21,10 +22,11 @@ def register():
         #bcrypt.check_password_hash(password,form.password.data)
         email = form.email.data
         print(username, email, password)
-        # user = User(username=username,email=email,password=password)
-        # db.session.add(user)
-        # db.session.commit()
-        #
-        # flash('Congrates, registeration success', category='success')
+        user = User(username=username,email=email,password=password)
+        db.session.add(user)
+        db.session.commit()
+
+        flash('Congrates, registeration success', category='success')
+        return redirect(url_for('index'))
         pass
     return render_template('register.html',form=form)
