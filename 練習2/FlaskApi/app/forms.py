@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.recaptcha import RecaptchaField
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import  DataRequired, Length, Email,EqualTo, ValidationError
 
 from app.models import User
@@ -36,3 +36,11 @@ class RegisterForm(FlaskForm):
         if check_result:
             raise ValidationError("Email already token")
     pass
+
+class LoginForm(FlaskForm):
+    # 因 db 的欄位屬性: unique，導致有第二個相同的 username 會報錯
+    # sqlalchemy.exc.IntegrityError
+    username = StringField('Username',validators=[DataRequired(),Length(min=3,max=20)])
+    password = PasswordField('Password', validators=[DataRequired(), Length(min=3, max=20)])
+    remember = BooleanField('Remember')
+    submit = SubmitField('Sign in')
