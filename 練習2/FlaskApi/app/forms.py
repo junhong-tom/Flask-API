@@ -44,3 +44,14 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired(), Length(min=3, max=20)])
     remember = BooleanField('Remember')
     submit = SubmitField('Sign in')
+
+
+class PasswordResetRequestForm(FlaskForm):
+    # 只需 email 且 email 資料庫要存在
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Send')
+
+    def validate_email(self, email):
+        check_result = User.query.filter_by(email=email.data).first()
+        if not check_result:
+            raise ValidationError("Email not exists.")

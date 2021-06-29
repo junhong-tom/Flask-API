@@ -1,6 +1,6 @@
 from flask import flash
 from flask import render_template,request
-from app.forms import RegisterForm, LoginForm
+from app.forms import RegisterForm, LoginForm, PasswordResetRequestForm
 from app import db,bcrypt,app
 from app.models import User
 from flask import redirect, url_for
@@ -31,7 +31,7 @@ def register():
         db.session.commit()
 
         flash('Congrates, registeration success', category='success')
-        return redirect(url_for('index'))
+        return redirect(url_for('login'))
         pass
     return render_template('register.html',form=form)
 
@@ -63,6 +63,15 @@ def login():
     return render_template('login.html',form=form)
 
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect( url_for('login'))
+
+@app.route('/send_password_reset_request',methods=['GET','POST'])
+def send_password_reset_request():
+    if current_user.is_authenticated:
+        return redirect( url_for('index'))
+    form = PasswordResetRequestForm()
+    email = form.email.data
+    return render_template('send_password_reset_request.html', form=form)
